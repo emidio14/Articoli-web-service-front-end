@@ -1,0 +1,14 @@
+element.style {
+    font-size: 52px;
+}
+.font-semibold {
+    font-weight: 500;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0 0 10px;
+    color: inherit;
+    font-family: 'open sans', 'arial';
+    text-rendering: optimizeLegibility;
+}
