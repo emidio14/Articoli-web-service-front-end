@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,14 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
 
-  utente: string = '';
-  titolo: string = 'Accesso & Autenticazione';
-  sottotitolo: string = 'Procedi ad inserire le tue credenziali';
+  utente : string = "";
 
-  constructor(private route: ActivatedRoute) { }
+  titolo: string = "Benvenuti in Alphashop";
+  sottotitolo: string = "Visualizza le offerte del giorno";
+
+
+  constructor(private route : ActivatedRoute) {}
 
   ngOnInit(): void {
 
-    this.utente = this.route.snapshot.params['userId'];
+    this.utente = this.route.snapshot.params['userid'];
+
   }
+
 }

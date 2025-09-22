@@ -1,24 +1,45 @@
+
 #SignUp {
-    margin-right: 0.5em;
-    width: 6em;
-    background-color: #b41b07
+	margin-right: 0.5em;
+	width: 6em;
 }
 
 #SignIn {
-    margin-left: 0.5em;
-    width: 6em;
-    background-color: #14b437
+	margin-left: 0.5em;
+	width: 6em;
 }
 
-.jumbotron-billboard .img{
-    background-image: url("https://t3.ftcdn.net/jpg/03/35/74/56/360_F_335745675_MaXYxSadrviZdTdThITuHb2oCohYOiwEu.jpg");
-    background-color: #e9ecef;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    border-radius: 0.3rem;
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
-    text-align: center;
+.jumbotron-billboard .img {
+	margin-bottom: 0px;
+	opacity: 0.2;
+	color: #fff;
+	background: #000 url(http://www.loyapp.cloud/images/grocery.jpg)
+		top center no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
+
+.jumbotron h2 {
+	margin-top: 0;
+}
+
+.jumbotron {
+	position: relative;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	min-height: 150px;
+  margin-bottom: 0.5%;
+}
+
+.jumbotron .container {
+	position: relative;
+	z-index: 2;
+}
+
+
