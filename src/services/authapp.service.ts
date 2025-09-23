@@ -8,7 +8,7 @@ export class AuthappService {
   constructor() { }
 
   autentica = (userid: string, password: string): boolean => {
-    var retVal = (userid === 'Nicola' && password === '1234') ? true : false;
+    var retVal = (userid === 'Nicola' && password === '12345') ? true : false;
 
     if (retVal) {
       sessionStorage.setItem('autenticato', 'true');
@@ -20,4 +20,9 @@ export class AuthappService {
   loggedUser = (): string | null => (sessionStorage.getItem('Utente') ?  sessionStorage.getItem('Utente') : "");
 
   isLogged = (): boolean => (sessionStorage.getItem('Utente') ? true : false);
+
+  clearUser = (): void => sessionStorage.removeItem('Utente');
+
+  clearAll = (): void => sessionStorage.clear();
+
 }

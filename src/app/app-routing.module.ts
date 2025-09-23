@@ -5,12 +5,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorComponent } from './error/error.component';
 import { ArticoliComponent } from './articoli/articoli.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from 'src/services/route-guard.service';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'welcome/:userId', component: WelcomeComponent},
-  {path: 'articoli', component: ArticoliComponent},
+  {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard]},
+  {path: 'welcome/:userId', component: WelcomeComponent, canActivate: [AuthGuard]},
+  {path: 'articoli', component: ArticoliComponent, canActivate: [AuthGuard]},
   {path: 'logout', component: LogoutComponent},
   {path: '**', component: ErrorComponent}
 ];
