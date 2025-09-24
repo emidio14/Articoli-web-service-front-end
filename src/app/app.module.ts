@@ -9,12 +9,10 @@ import { HomeModule } from './modules/home/home.module';
 import { LoginModule } from './modules/login/login.module';
 import { LogoutModule } from './modules/logout/logout.module';
 import { NgModule } from '@angular/core';
-import { CiaoComponent } from './ciao/ciao.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CiaoComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
