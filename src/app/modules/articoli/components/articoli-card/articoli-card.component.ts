@@ -10,7 +10,7 @@ export class ArticoliCardComponent implements OnInit {
   
   constructor() { }
 
-  @Input()
+  @Input('articolo-card')
   articolo: IArticoli = {
     codart: '',
     descrizione: '',
@@ -23,15 +23,15 @@ export class ArticoliCardComponent implements OnInit {
     imageUrl: ''
   }
 
-  @Output()
-  delete = new EventEmitter();
-  @Output()
-  edit = new EventEmitter();
+  @Output('elimina-card')
+  delete = new EventEmitter<IArticoli>();
+  @Output('modifica-card')
+  edit = new EventEmitter<IArticoli>();
 
   ngOnInit(): void {
   }
 
-  editArt = () => this.edit.emit(this.articolo.codart);
-  delArt = () => this.delete.emit(this.articolo.codart);
+  editArt = () => this.edit.emit(this.articolo);
+  delArt = () => this.delete.emit(this.articolo);
 
 }
