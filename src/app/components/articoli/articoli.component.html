@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="CodiceArticolo">
+            <th mat-header-cell *matHeaderCellDef> Codice Articolo </th>
+            <td mat-cell *matCellDef="let element"> {{element.codArt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Descrizione">
+            <th mat-header-cell *matHeaderCellDef> Descrizione </th>
+            <td mat-cell *matCellDef="let element"> {{element.descrizione}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Um">
+            <th mat-header-cell *matHeaderCellDef> Um </th>
+            <td mat-cell *matCellDef="let element"> {{element.um}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CodiceStato">
+            <th mat-header-cell *matHeaderCellDef> Codice Stato </th>
+            <td mat-cell *matCellDef="let element"> {{element.codStat}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NumeroPezzi">
+            <th mat-header-cell *matHeaderCellDef> Numero Pezzi </th>
+            <td mat-cell *matCellDef="let element"> {{element.pzCart}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="PesoNetto">
+            <th mat-header-cell *matHeaderCellDef> Peso Netto </th>
+            <td mat-cell *matCellDef="let element"> {{element.pesoNetto}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="idStatoArticolo">
+            <th mat-header-cell *matHeaderCellDef> ID Stato Articolo </th>
+            <td mat-cell *matCellDef="let element"> {{element.idStatoArt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DataCreazione">
+            <th mat-header-cell *matHeaderCellDef> Data Creazione </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataCreaz}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Barcode">
+            <th mat-header-cell *matHeaderCellDef> Barcode </th>
+            <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

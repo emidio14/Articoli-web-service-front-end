@@ -1,16 +1,18 @@
-import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatTableModule } from '@angular/material/table';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-  
-    BrowserAnimationsModule
+    BrowserModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync() // Configurazione moderna e consigliata
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
