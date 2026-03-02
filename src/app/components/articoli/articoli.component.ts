@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ArticoliService } from './services/articoli.service';
+import { ArticoliService } from 'src/app/services/articoli.service';
 import { IArticoliDto } from 'src/app/models/ArticoliDto';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-articoli',
+  standalone: true,
   imports: [MatTableModule],
   templateUrl: './articoli.component.html',
   styleUrl: './articoli.component.css',
   providers: [ArticoliService]
 })
-export class AppComponent implements OnInit{
-  // 1. I nomi devono essere IDENTICI ai matColumnDef del tuo HTML
+export class ArticoliComponent implements OnInit{
+ 
   displayedColumns: string[] = [
     'CodiceArticolo', 
     'Descrizione', 
@@ -37,8 +39,7 @@ export class AppComponent implements OnInit{
       next: (response: IArticoliDto[]) => {
         this.dataSource.data = response;
         console.log('Dati ricevuti dal backend: ', response);
-      },
-      error: (err) => console.error('Errore durante la chiamata: ' + err)
+      }
     })
   }
 }

@@ -1,46 +1,18 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { IArticoliDto } from './models/ArticoliDto';
+import { Component } from '@angular/core';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule} from '@angular/material/table';
 import { ArticoliService } from './services/articoli.service';
+import { ArticoliComponent } from './components/articoli/articoli.component';
 
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   styleUrl: 'app.component.css',
   templateUrl: 'app.component.html',
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [MatTableModule, MatPaginatorModule, ArticoliComponent],
   providers: [ArticoliService]
 })
-export class AppComponent implements OnInit{
-  // 1. I nomi devono essere IDENTICI ai matColumnDef del tuo HTML
-  displayedColumns: string[] = [
-    'CodiceArticolo', 
-    'Descrizione', 
-    'Um', 
-    'CodiceStato', 
-    'NumeroPezzi', 
-    'PesoNetto', 
-    'idStatoArticolo', 
-    'DataCreazione', 
-    'Barcode'
-  ];
+export class AppComponent {
 
-  dataSource = new MatTableDataSource<IArticoliDto>([]);
-
-  constructor(private articoliService: ArticoliService){}
-
-  ngOnInit(): void {
-    this.recoveryDate();
-  }
-
-  recoveryDate(): void{
-    this.articoliService.getAllArticoli().subscribe({
-      next: (response: IArticoliDto[]) => {
-        this.dataSource.data = response;
-        console.log('Dati ricevuti dal backend: ', response);
-      },
-      error: (err) => console.error('Errore durante la chiamata: ' + err)
-    })
-  }
 }

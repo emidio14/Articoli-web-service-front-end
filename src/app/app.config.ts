@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,20 +12,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {DataService} from './services/data.service';
-import {AddDialogComponent} from './dialogs/add/add.dialog.component';
-import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
-import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ArticoliService} from './services/articoli.service';
+import {AddDialogComponent} from './dialogs/add.dialog/add.dialog.component';
+import {EditDialogComponent} from './dialogs/edit.dialog/edit.dialog.component';
+import {DeleteDialogComponent} from './dialogs/delete.dialog/delete.dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        AddDialogComponent,
-        EditDialogComponent,
-        DeleteDialogComponent
+    declarations: [        
     ],
     imports: [
         BrowserModule,
@@ -38,12 +33,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AddDialogComponent,
+        EditDialogComponent,
+        DeleteDialogComponent,
+        AppComponent
     ],
     providers: [
-        DataService,
+        ArticoliService,
         provideHttpClient(withInterceptorsFromDi())
     ],
-    bootstrap: [AppComponent]
+    bootstrap: []
 })
 export class AppModule { }
