@@ -10,7 +10,10 @@ import { ArticoliComponent } from './components/articoli/articoli.component';
   standalone: true,
   styleUrl: 'app.component.css',
   templateUrl: 'app.component.html',
-  imports: [MatTableModule, MatPaginatorModule, ArticoliComponent],
+  imports: [
+    MatTableModule, 
+    MatPaginatorModule, 
+    ArticoliComponent],
   providers: [ArticoliService]
 })
 export class AppComponent {
