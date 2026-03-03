@@ -4,11 +4,13 @@ import { ArticoliService } from 'src/app/services/articoli.service';
 import { IArticoliDto } from 'src/app/models/ArticoliDto';
 import { OnInit } from '@angular/core';
 import { MatPaginator } from "@angular/material/paginator";
+import {MatInputModule} from '@angular/material/input';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-articoli',
   standalone: true,
-  imports: [MatTableModule, MatPaginator],
+  imports: [MatTableModule, MatPaginator, MatInputModule],
   templateUrl: './articoli.component.html',
   styleUrl: './articoli.component.css',
   providers: [ArticoliService]
@@ -32,6 +34,7 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
   constructor(private articoliService: ArticoliService){}
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
     this.recoveryData();
@@ -48,5 +51,15 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit(){
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  filterPagination(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
