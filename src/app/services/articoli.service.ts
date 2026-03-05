@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, catchError, Observable, throwError, retry } from 'rxjs';
 import { IArticoliDto } from '../models/ArticoliDto';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticoliService {
 
-  private baseUrl = 'http://localhost:8080/api/articoli/';
+  private readonly baseUrl = 'http://localhost:8080/api/articoli/';
 
   datachange: BehaviorSubject<IArticoliDto[]> = new BehaviorSubject<IArticoliDto[]>([]);
 
@@ -16,9 +17,43 @@ export class ArticoliService {
 
   constructor(private http: HttpClient) { }
 
+  get data(): IArticoliDto[]{
+    return this.datachange.value;
+  }
+
+  getDialogData(){
+    return this.dialogData;
+  }
+
   //CRUD API REST
 
   getAllArticoli(): Observable<IArticoliDto[]> {
     return this.http.get<IArticoliDto[]>(`${this.baseUrl}`)
-      }
+      .pipe(retry(1), catchError((error: HttpErrorResponse) => {
+        return throwError(() => new Error('error'));
+      }))
+  }
+
+  addArticoli(articoliDto: IArticoliDto): Observable<IArticoliDto> {
+    return this.http.post<IArticoliDto>(`${this.baseUrl}`, articoliDto)
+      .pipe(retry(1), catchError((error: HttpErrorResponse) => {
+        return throwError(() => new Error('error'));
+      }))
+
+  }
+
+  updateArticoli(codArt: String, articoliDto: IArticoliDto): Observable<IArticoliDto> {
+    return this.http.put<IArticoliDto>(`${this.baseUrl}/${codArt}`, articoliDto)
+      .pipe(retry(1), catchError((error: HttpErrorResponse) => {
+        return throwError(() => new Error('error'));
+      }))
+  }
+
+  deleteArticoli(codArt: String): Observable<IArticoliDto> {
+    return this.http.delete<IArticoliDto>(`${this.baseUrl}/${codArt}`)
+      .pipe(retry(1), catchError((error: HttpErrorResponse) => {
+        return throwError(() => new Error('error'));
+      }))
+  }
+
 }

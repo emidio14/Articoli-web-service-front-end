@@ -1,1 +1,90 @@
-<p>add.dialog works!</p>
+<div class="container">
+  <h3 mat-dialog-title>Aggiungi nuovo Articolo</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit()" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Codice Articolo" [(ngModel)]="data.codArt" name="codArt" required >
+            @if (formControl.invalid){
+                <mat-error >{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Descrizione" [(ngModel)]="data.descrizione" name="descrizione" maxlength="10" required >
+            @if (formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+        </textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Um" [(ngModel)]="data.um" name="um" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Codice Stato" [(ngModel)]="data.codStat" name="codStat" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Numero Pezzi" [(ngModel)]="data.pzCart" name="pzCart">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Peso Netto" [(ngModel)]="data.pesoNetto" name="pesoNetto" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="ID Stato Articolo" [(ngModel)]="data.idStatoArt" name="idStatoArt" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Data Creazione" [(ngModel)]="data.dataCreaz" name="dataCreaz" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Barcode" [(ngModel)]="data.barcode" name="barcode" required >
+            @if(formControl.invalid){
+                <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="3" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>
