@@ -25,12 +25,12 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
  
   displayedColumns: string[] = ['CodiceArticolo', 'Descrizione', 'Um', 'CodiceStato', 'NumeroPezzi', 'PesoNetto', 'idStatoArticolo', 'DataCreazione', 'Barcode', 'Actions'];
   dataSource = new MatTableDataSource<IArticoliDto>([]);
+  dialog= inject(MatDialog);
   articoliService = inject(ArticoliService);
 
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatDialog) dialog!: MatDialog;
 
   ngOnInit(): void {
     this.recoveryData();
