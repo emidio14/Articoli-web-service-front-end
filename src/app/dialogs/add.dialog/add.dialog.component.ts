@@ -1,17 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators, FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { IArticoliDto } from 'src/app/models/ArticoliDto';
 import { ArticoliService } from 'src/app/services/articoli.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @Component({
   selector: 'app-add.dialog',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatDialogModule],
+  imports: [FormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatSelectModule],
   templateUrl: './add.dialog.component.html',
   styleUrl: './add.dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class AddDialogComponent {
 
@@ -30,8 +34,6 @@ export class AddDialogComponent {
     submit(){
       //Sto dicendo ad angular che quando il form è vuoto non fare nulla di default perchè viene gestito tramite bottone
     }
-
-    articoli = toSignal(this.articoliService.getAllArticoli(), {initialValue: [] as IArticoliDto[]});
 
     onNoClick(): void{
       this.dialogRef.close();

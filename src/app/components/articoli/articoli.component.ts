@@ -61,6 +61,8 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
 
   addNew(){
     const dialogRef = this.dialog.open(AddDialogComponent, {
+      height: '700px',
+      width: '600px',
       data: {articoliDto: [] as IArticoliDto[]}
     });
 
