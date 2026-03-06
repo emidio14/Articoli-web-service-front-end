@@ -6,12 +6,14 @@ import { ArticoliService } from 'src/app/services/articoli.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-add.dialog',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatSelectModule],
+  imports: [FormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatSelectModule, MatDatepickerModule],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './add.dialog.component.html',
   styleUrl: './add.dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

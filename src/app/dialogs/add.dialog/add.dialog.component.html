@@ -4,6 +4,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Codice Articolo</mat-label>
     <input matInput placeholder="Inserisci un codice articolo ...">
+    <!--<mat-error>Campo Obbligatorio</mat-error>-->
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -20,7 +21,13 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Codice Stato</mat-label>
-    <input matInput placeholder="Inserisci un codice stato ...">
+    <mat-select>
+      <mat-option value="one">A</mat-option>
+      <mat-option value="two">B</mat-option>
+      <mat-option value="two">C</mat-option>
+      <mat-option value="two">D</mat-option>
+      <mat-option value="two">E</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -28,6 +35,28 @@
     <input matInput #inputstate placeholder="Inserisci un numero di pezzi ..." maxlength="10">
     <mat-hint align="end">{{inputstate?.value?.length || 0}}/10</mat-hint>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Peso Netto</mat-label>
+    <input matInput placeholder="Inserisci un peso ...">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>ID Stato Articolo</mat-label>
+    <mat-select>
+      <mat-option value="one">ST01</mat-option>
+      <mat-option value="two">ST02</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data Creazione</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
 
 
 </div>

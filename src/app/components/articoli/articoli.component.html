@@ -53,11 +53,12 @@
 
         <!-- Actions operations crud-->
         <ng-container matColumnDef="Actions">
-            <th mat-header-cell *matHeaderCellDef> Azioni </th>
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary" (click)="addNew()">
+                    <mat-icon aria-label="Add">add</mat-icon>
+                </button>
+            </th>
                 <td mat-cell *matCellDef="let element; let i=index;">  
-                    <button mat-icon-button color="primary" (click)="addNew()">
-                        <mat-icon aria-label="Add">add</mat-icon>
-                    </button>
                     <!-- 
                     <button mat-icon-button color="accent" (click)="edit(i, element.codArt, element.descrizione, element.um, 
                         element.codStat, element.pzCart, element.pesoNetto, element.idStatoArt, element.dataCreaz, element.barcode)">
