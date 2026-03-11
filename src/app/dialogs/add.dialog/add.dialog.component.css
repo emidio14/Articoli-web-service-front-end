@@ -1,18 +1,75 @@
 :host {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; <-- Rimuovi o commenta questa riga se vuoi che il form occupi tutta la larghezza correttamente */
 }
 
 .form-container {
   display: flex;
-  flex-direction: column;             
+  flex-direction: column;
   width: 100%;
-  gap: 0px;
+  gap: 8px; 
   padding: 1em;
+  box-sizing: border-box; 
 }
 
-mat-form-field {
+.mat-form-field {
   width: 100%;
-  
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end; /* Sposta i bottoni a destra */
+  gap: 12px !important;
+  padding: 16px 24px !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-save {
+  background-color: #44ACFF;
+  line-height: 2.2;
+  padding: 0 25px;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  border-radius: 10px;
+  box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 0.6),
+    inset -2px -2px 3px rgb(0 0 0 / 0.6);
+}
+
+.styled-btn-save:hover {
+  background-color: #44ACFF;
+}
+
+.styled-btn-save:active {
+  box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 0.6),
+    inset 2px 2px 3px rgb(0 0 0 / 0.6);
+}
+
+.btn-cancel {
+  background-color: #E36A6A;
+  line-height: 2.2;
+  padding: 0 25px;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  border-radius: 10px;
+  box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 0.6),
+    inset -2px -2px 3px rgb(0 0 0 / 0.6);
+}
+
+.styled-btn-cancel:hover {
+  background-color: #E36A6A;
+}
+
+.styled-btn-cancel:active {
+  box-shadow:
+    inset -2px -2px 3px rgba(138, 57, 57, 0.6),
+    inset 2px 2px 3px rgb(0 0 0 / 0.6);
 }

@@ -1,6 +1,7 @@
-<div class="form-container">
+
   <h3 mat-dialog-title>Aggiungi nuovo Articolo</h3>
 
+  <div class="form-container">
   <mat-form-field appearance="fill">
     <mat-label>Codice Articolo</mat-label>
     <input matInput placeholder="Inserisci un codice articolo ...">
@@ -57,6 +58,17 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-
+  <mat-form-field appearance="fill">
+    <mat-label>Barcode</mat-label>
+    <input matInput #inputstate placeholder="Inserisci un barcode ..." maxlength="13">
+    <mat-hint align="end">{{inputstate?.value?.length || 0}}/13</mat-hint>
+  </mat-form-field>
 
 </div>
+
+
+    <div mat-dialog-actions align="end" class="mat-dialog-actions">
+      <button class="btn-save styled-btn-save" mat-button type="button" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="confirmAdd()">Save</button>
+      <button class="btn-cancel styled-btn-cancel" mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
