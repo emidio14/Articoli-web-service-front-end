@@ -70,19 +70,19 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
     idStatoArt: '',
     dataCreaz: new Date().toISOString().split('T')[0],
     barcode: '',
-    ingredienti: {
-      codArt: '', 
-      info: ''
+    ingredienti: [{
+      codArt: '',
+      info: '' }
+    ],
+    iva: {
+      idIva: '',
+      aliquota: '',
+      descrizione: ''
     },
-  iva: {
-    idIva: '',
-    aliquota: '',
-    descrizione: ''
-  },
-  famAssort: {
-    id: '',
-    descrizione: ''
-  },
+    famAssort: {
+      id: '',
+      descrizione: ''
+    },
   };
   const dialogRef = this.dialog.open(AddDialogComponent, {
     height: '700px',
