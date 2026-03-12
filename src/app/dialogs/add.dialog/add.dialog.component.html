@@ -4,55 +4,55 @@
   <div class="form-container">
   <mat-form-field appearance="fill">
     <mat-label>Codice Articolo</mat-label>
-    <input matInput placeholder="Inserisci un codice articolo ...">
+    <input matInput placeholder="Inserisci un codice articolo ..." name="codArt" [(ngModel)]="data.codArt">
     <!--<mat-error>Campo Obbligatorio</mat-error>-->
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Descrizione</mat-label>
-    <textarea matInput rows="2" placeholder="Inserisci una descrizione ..."></textarea>
+    <textarea matInput rows="2" placeholder="Inserisci una descrizione ..." name="descrizione" [(ngModel)]="data.descrizione"></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Um</mat-label>
-    <mat-select>
-      <mat-option value="one">Pz</mat-option>
+    <mat-select name="um" [(ngModel)]="data.um">
+      <mat-option value="pz">Pz</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Codice Stato</mat-label>
-    <mat-select>
-      <mat-option value="one">A</mat-option>
-      <mat-option value="two">B</mat-option>
-      <mat-option value="two">C</mat-option>
-      <mat-option value="two">D</mat-option>
-      <mat-option value="two">E</mat-option>
+    <mat-select name="codStato" [(ngModel)]="data.codStat">
+      <mat-option value="A">A</mat-option>
+      <mat-option value="B">B</mat-option>
+      <mat-option value="C">C</mat-option>
+      <mat-option value="D">D</mat-option>
+      <mat-option value="E">E</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Numero Pezzi</mat-label>
-    <input matInput #inputNumeroPezzi placeholder="Inserisci un numero di pezzi ..." maxlength="10">
+    <input matInput #inputNumeroPezzi placeholder="Inserisci un numero di pezzi ..." maxlength="10" name="pzCart" [(ngModel)]="data.pzCart">
     <mat-hint align="end">{{inputNumeroPezzi?.value?.length || 0}}/10</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Peso Netto</mat-label>
-    <input matInput placeholder="Inserisci un peso ...">
+    <input matInput placeholder="Inserisci un peso ..." name="pesoNetto" [(ngModel)]="data.pesoNetto">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>ID Stato Articolo</mat-label>
-    <mat-select>
-      <mat-option value="one">ST01</mat-option>
-      <mat-option value="two">ST02</mat-option>
+    <mat-select name="idStatoArticolo" [(ngModel)]="data.idStatoArt">
+      <mat-option value="ST01">ST01</mat-option>
+      <mat-option value="ST02">ST02</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Data Creazione</mat-label>
-    <input matInput [matDatepicker]="picker">
+    <input matInput [matDatepicker]="picker" placeholder="Scegli una data ..." name="dataCreaz" [(ngModel)]="data.dataCreaz">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -60,15 +60,35 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Barcode</mat-label>
-    <input matInput #inputBarcode placeholder="Inserisci un barcode ..." maxlength="13">
+    <input matInput #inputBarcode placeholder="Inserisci un barcode ..." maxlength="13" name="barcode" [(ngModel)]="data.barcode">
     <mat-hint align="end">{{inputBarcode?.value?.length || 0}}/13</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Iva</mat-label>
+    <mat-select name="aliquota" [(ngModel)]="data.iva.aliquota">
+      <mat-option value="1">4%</mat-option>
+      <mat-option value="2">10%</mat-option>
+      <mat-option value="3">22%</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipologia prodotto</mat-label>
+    <mat-select name="famAssort" [(ngModel)]="data.famAssort.id">
+      <mat-option value="1">ALIMENTARI</mat-option>
+      <mat-option value="2">DROGHERIA</mat-option>
+      <mat-option value="3">BEVANDE</mat-option>
+      <mat-option value="4">SURGELATI</mat-option>
+      <mat-option value="5">CURA CASA</mat-option>
+    </mat-select>
   </mat-form-field>
 
 </div>
 
 
     <div mat-dialog-actions align="end" class="mat-dialog-actions">
-      <button class="btn-save styled-btn-save" mat-button type="button" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+      <button class="btn-save styled-btn-save" mat-button type="button" 
         (click)="confirmAdd()">Save</button>
       <button class="btn-cancel styled-btn-cancel" mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>

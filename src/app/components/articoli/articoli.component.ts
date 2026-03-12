@@ -59,12 +59,36 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
     }
   }
 
-  addNew(){
-    const dialogRef = this.dialog.open(AddDialogComponent, {
-      height: '700px',
-      width: '600px',
-      data: {articoliDto: [] as IArticoliDto[]}
-    });
+  addNew() {
+  const nuovoArticolo: IArticoliDto = {
+    codArt: '',
+    descrizione: '',
+    um: 'pz',
+    codStat: 'A',
+    pzCart: 0,
+    pesoNetto: 0.000,
+    idStatoArt: '',
+    dataCreaz: new Date().toISOString().split('T')[0],
+    barcode: '',
+    ingredienti: {
+      codArt: '', 
+      info: ''
+    },
+  iva: {
+    idIva: '',
+    aliquota: '',
+    descrizione: ''
+  },
+  famAssort: {
+    id: '',
+    descrizione: ''
+  },
+  };
+  const dialogRef = this.dialog.open(AddDialogComponent, {
+    height: '700px',
+    width: '600px',
+    data: nuovoArticolo
+  });
 
     dialogRef.afterClosed().subscribe(result => {
 
