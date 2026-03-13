@@ -70,10 +70,10 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
     idStatoArt: '',
     dataCreaz: new Date().toISOString().split('T')[0],
     barcode: '',
-    ingredienti: [{
+    ingredienti: {
       codArt: '',
-      info: '' }
-    ],
+      info: '' 
+    },
     iva: {
       idIva: '',
       aliquota: '',

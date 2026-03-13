@@ -8,10 +8,10 @@ export interface IArticoliDto {
   idStatoArt: string;
   dataCreaz: Date | string;
   barcode: string;
-  ingredienti: [{
+  ingredienti: {
     codArt: string, 
     info: string
-  }],
+  },
   iva: {
     idIva: string;
     aliquota: string;

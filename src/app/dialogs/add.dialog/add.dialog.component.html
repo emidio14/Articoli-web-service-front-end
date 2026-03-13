@@ -22,7 +22,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Codice Stato</mat-label>
-    <mat-select name="codStato" [(ngModel)]="data.codStat">
+    <mat-select name="codStat" [(ngModel)]="data.codStat">
       <mat-option value="A">A</mat-option>
       <mat-option value="B">B</mat-option>
       <mat-option value="C">C</mat-option>
@@ -44,7 +44,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>ID Stato Articolo</mat-label>
-    <mat-select name="idStatoArticolo" [(ngModel)]="data.idStatoArt">
+    <mat-select name="idStatoArt" [(ngModel)]="data.idStatoArt">
       <mat-option value="ST01">ST01</mat-option>
       <mat-option value="ST02">ST02</mat-option>
     </mat-select>
@@ -67,29 +67,29 @@
   <mat-form-field appearance="fill">
     <mat-label>Ingredienti</mat-label>
     <mat-select name="ingredienti" [(ngModel)]="data.ingredienti">
-      <mat-option value="[{ codArt: 'INF001', info: 'Ingrediente 1' }]">INF001</mat-option>
-      <mat-option value="[{ codArt: 'INF002', info: 'Ingrediente 2' }]">INF002</mat-option>
-      <mat-option value="[{ codArt: 'INF003', info: 'Ingrediente 3' }]">INF003</mat-option>
+      <mat-option [value]="{ codArt: 'INF001', info: 'Ingrediente 1' }">INF001</mat-option>
+      <mat-option [value]="{ codArt: 'INF002', info: 'Ingrediente 2' }">INF002</mat-option>
+      <mat-option [value]="{ codArt: 'INF003', info: 'Ingrediente 3' }">INF003</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Iva</mat-label>
     <mat-select name="iva" [(ngModel)]="data.iva">
-      <mat-option value="{ idIva: 1, aliquota: 4, descrizione: 'IVA 4%' }">4%</mat-option>
-      <mat-option value="{ idIva: 2, aliquota: 10, descrizione: 'IVA 10%' }">10%</mat-option>
-      <mat-option value="{ idIva: 3, aliquota: 22, descrizione: 'IVA 22%' }">22%</mat-option>
+      <mat-option [value]="{ idIva: 1, aliquota: 4, descrizione: 'IVA 4%' }">4%</mat-option>
+      <mat-option [value]="{ idIva: 2, aliquota: 10, descrizione: 'IVA 10%' }">10%</mat-option>
+      <mat-option [value]="{ idIva: 3, aliquota: 22, descrizione: 'IVA 22%' }">22%</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Tipologia prodotto</mat-label>
     <mat-select name="famAssort" [(ngModel)]="data.famAssort">
-      <mat-option value="{ id: 1, descrizione: 'ALIMENTARI' }">ALIMENTARI</mat-option>
-      <mat-option value="{ id: 2, descrizione: 'DROGHERIA' }">DROGHERIA</mat-option>
-      <mat-option value="{ id: 3, descrizione: 'BEVANDE' }">BEVANDE</mat-option>
-      <mat-option value="{ id: 4, descrizione: 'SURGELATI' }">SURGELATI</mat-option>
-      <mat-option value="{ id: 5, descrizione: 'CURA CASA' }">CURA CASA</mat-option>
+      <mat-option [value]="{ id: 1, descrizione: 'ALIMENTARI' }">ALIMENTARI</mat-option>
+      <mat-option [value]="{ id: 2, descrizione: 'DROGHERIA' }">DROGHERIA</mat-option>
+      <mat-option [value]="{ id: 3, descrizione: 'BEVANDE' }">BEVANDE</mat-option>
+      <mat-option [value]="{ id: 4, descrizione: 'SURGELATI' }">SURGELATI</mat-option>
+      <mat-option [value]="{ id: 5, descrizione: 'CURA CASA' }">CURA CASA</mat-option>
     </mat-select>
   </mat-form-field>
 
