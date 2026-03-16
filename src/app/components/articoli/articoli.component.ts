@@ -65,9 +65,10 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
   
     const dialogRef = this.dialog.open(AddDialogComponent, {
 
-    height: '700px',
-    width: '600px',
-    data: newRecord
+      disableClose: true,
+      height: '700px',
+      width: '600px',
+      data: newRecord
   });
 
     dialogRef.afterClosed().subscribe(result => {
