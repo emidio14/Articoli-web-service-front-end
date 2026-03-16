@@ -12,11 +12,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MatDialog } from '@angular/material/dialog';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-articoli',
   standalone: true,
-  imports: [MatTableModule, MatPaginator, MatInputModule, MatButtonModule, MatIcon],
+  imports: [MatTableModule, MatPaginator, MatInputModule, MatButtonModule, MatIcon, DecimalPipe],
   templateUrl: './articoli.component.html',
   styleUrl: './articoli.component.css',
   providers: [ArticoliService]
@@ -60,44 +61,27 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
   }
 
   addNew() {
-  const nuovoArticolo: IArticoliDto = {
-    codArt: '',
-    descrizione: '',
-    um: 'pz',
-    codStat: 'A',
-    pzCart: 0,
-    pesoNetto: 0.000,
-    idStatoArt: '',
-    dataCreaz: new Date().toISOString().split('T')[0],
-    barcode: '',
-    ingredienti: {
-      codArt: '',
-      info: '' 
-    },
-    iva: {
-      idIva: '',
-      aliquota: '',
-      descrizione: ''
-    },
-    famAssort: {
-      id: '',
-      descrizione: ''
-    },
-  };
-  const dialogRef = this.dialog.open(AddDialogComponent, {
+    const newRecord = new IArticoliDto();
+  
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+
     height: '700px',
     width: '600px',
-    data: nuovoArticolo
+    data: newRecord
   });
 
     dialogRef.afterClosed().subscribe(result => {
 
-      if(result === 1){
-        this.articoliService.datachange.value.push(this.articoliService.getDialogData());
+      console.log('Dialog closed with result: ', result);
+
+      if(result){
+
+        this.dataSource.data= [...this.dataSource.data, newRecord];
         this.refreshtable();
       }
     })
   }
+  
 
   /*edit(){}
 
@@ -106,5 +90,6 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
 
   private refreshtable(){
     this.paginator._changePageSize(this.paginator.pageSize);
+    this.sort.sortChange.emit(this.sort);
   }
 }

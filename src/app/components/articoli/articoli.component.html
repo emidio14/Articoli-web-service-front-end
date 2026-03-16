@@ -33,9 +33,9 @@
 
         <ng-container matColumnDef="PesoNetto">
             <th mat-header-cell *matHeaderCellDef> Peso Netto </th>
-            <td mat-cell *matCellDef="let element"> {{element.pesoNetto}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.pesoNetto | number:'1.3-3'}} </td>
         </ng-container>
-
+        
         <ng-container matColumnDef="idStatoArticolo">
             <th mat-header-cell *matHeaderCellDef> ID Stato Articolo </th>
             <td mat-cell *matCellDef="let element"> {{element.idStatoArt}} </td>

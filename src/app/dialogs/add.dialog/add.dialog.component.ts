@@ -43,16 +43,17 @@ export class AddDialogComponent {
 
   public confirmAdd() {
 
-    if(!this.data){
-        console.error('Dati del nuovo articolo non validi: ', JSON.stringify(this.data));
-        return;
+    if(this.data){
+        console.log('Payload di request: ', JSON.stringify(this.data));
+        
       }
 
     this.articoliService.addArticoli(this.data).subscribe({        
       
       next: (response: IArticoliDto) => {
         console.log('Aggiunto nuovo record: ', response);
-        this.dialogRef.close();
+        this.dialogRef.close(response);
+        
       },
       error: (err) => {
         console.error('Errore durante l\'aggiunta del record: ', err);

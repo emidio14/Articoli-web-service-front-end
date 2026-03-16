@@ -33,8 +33,8 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Numero Pezzi</mat-label>
-    <input matInput #inputNumeroPezzi placeholder="Inserisci un numero di pezzi ..." maxlength="10" name="pzCart" [(ngModel)]="data.pzCart">
-    <mat-hint align="end">{{inputNumeroPezzi?.value?.length || 0}}/10</mat-hint>
+    <input matInput type="number" #inputNumeroPezzi placeholder="Inserisci un numero di pezzi ..." maxlength="5" name="pzCart" [(ngModel)]="data.pzCart">
+    <mat-hint align="end">{{inputNumeroPezzi?.value?.length || 0}}/5</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -67,9 +67,16 @@
   <mat-form-field appearance="fill">
     <mat-label>Ingredienti</mat-label>
     <mat-select name="ingredienti" [(ngModel)]="data.ingredienti">
-      <mat-option [value]="{ codArt: 'INF001', info: 'Ingrediente 1' }">INF001</mat-option>
-      <mat-option [value]="{ codArt: 'INF002', info: 'Ingrediente 2' }">INF002</mat-option>
-      <mat-option [value]="{ codArt: 'INF003', info: 'Ingrediente 3' }">INF003</mat-option>
+      <mat-option [value]="{ codArt: 'INF001', info: 'Origine: Italia - Cat. I' }">INF001</mat-option>
+      <mat-option [value]="{ codArt: 'INF002', info: 'Origine: Germania - Cat. II' }">INF002</mat-option>
+      <mat-option [value]="{ codArt: 'INF003', info: 'Origine: Lituania' }">INF003</mat-option>
+      <mat-option [value]="{ codArt: 'INF004', info: 'Origine: Spagna - Cat. II' }">INF004</mat-option>
+      <mat-option [value]="{ codArt: 'INF005', info: 'Origine: Lussemburgo' }">INF005</mat-option>
+      <mat-option [value]="{ codArt: 'INF006', info: 'Origine: Paesi Bassi' }">INF006</mat-option>
+      <mat-option [value]="{ codArt: 'INF007', info: 'Origine: Ecuador' }">INF007</mat-option>
+      <mat-option [value]="{ codArt: 'INF008', info: 'Origine: Argentina' }">INF008</mat-option>
+      <mat-option [value]="{ codArt: 'INF009', info: 'Origine: Costa Rica' }">INF009</mat-option>
+      <mat-option [value]="{ codArt: 'INF010', info: 'Origine: Senegal' }">INF010</mat-option>
     </mat-select>
   </mat-form-field>
 
