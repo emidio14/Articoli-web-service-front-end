@@ -1,11 +1,13 @@
-
+<form class="form-container" #addForm="ngForm">
   <h3 mat-dialog-title>Aggiungi nuovo Articolo</h3>
 
   <div class="form-container">
   <mat-form-field appearance="fill">
     <mat-label>Codice Articolo</mat-label>
-    <input matInput placeholder="Inserisci un codice articolo ..." name="codArt" [(ngModel)]="data.codArt">
-    <!--<mat-error>Campo Obbligatorio</mat-error>-->
+    <input matInput placeholder="Inserisci un codice articolo ..." name="codArt" [(ngModel)]="data.codArt" #codArt="ngModel" required>
+     @if (codArt.hasError('required') && (codArt.dirty || codArt.touched)) {
+      <mat-error>{{getErrorMessage(codArt)}}</mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -60,13 +62,18 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Barcode</mat-label>
-    <input matInput #inputBarcode placeholder="Inserisci un barcode ..." maxlength="13" name="barcode" [(ngModel)]="data.barcode">
+    <input matInput placeholder="Inserisci un barcode ..." maxlength="13" name="barcode" [(ngModel)]="data.barcode" #inputBarcode="ngModel" required>
     <mat-hint align="end">{{inputBarcode?.value?.length || 0}}/13</mat-hint>
+
+    @if (inputBarcode.hasError('required') && (inputBarcode.dirty || inputBarcode.touched)) {
+      <mat-error>{{getErrorMessage(inputBarcode)}}</mat-error>
+    }
+
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Ingredienti</mat-label>
-    <mat-select name="ingredienti" [(ngModel)]="data.ingredienti">
+    <mat-select name="ingredienti" [(ngModel)]="data.ingredienti" #inputIngredienti="ngModel" required>
       <mat-option [value]="{ codArt: 'INF001', info: 'Origine: Italia - Cat. I' }">INF001</mat-option>
       <mat-option [value]="{ codArt: 'INF002', info: 'Origine: Germania - Cat. II' }">INF002</mat-option>
       <mat-option [value]="{ codArt: 'INF003', info: 'Origine: Lituania' }">INF003</mat-option>
@@ -78,26 +85,36 @@
       <mat-option [value]="{ codArt: 'INF009', info: 'Origine: Costa Rica' }">INF009</mat-option>
       <mat-option [value]="{ codArt: 'INF010', info: 'Origine: Senegal' }">INF010</mat-option>
     </mat-select>
+    @if (inputIngredienti.hasError('required') && (inputIngredienti.dirty || inputIngredienti.touched)) {
+      <mat-error>{{getErrorMessage(inputIngredienti)}}</mat-error>
+    }
+
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Iva</mat-label>
-    <mat-select name="iva" [(ngModel)]="data.iva">
+    <mat-select name="iva" [(ngModel)]="data.iva" #inputIva="ngModel" required>
       <mat-option [value]="{ idIva: 1, aliquota: 4, descrizione: 'IVA 4%' }">4%</mat-option>
       <mat-option [value]="{ idIva: 2, aliquota: 10, descrizione: 'IVA 10%' }">10%</mat-option>
       <mat-option [value]="{ idIva: 3, aliquota: 22, descrizione: 'IVA 22%' }">22%</mat-option>
     </mat-select>
+    @if (inputIva.hasError('required') && (inputIva.dirty || inputIva.touched)) {
+      <mat-error>{{getErrorMessage(inputIva)}}</mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Tipologia prodotto</mat-label>
-    <mat-select name="famAssort" [(ngModel)]="data.famAssort">
+    <mat-select name="famAssort" [(ngModel)]="data.famAssort" #inputFamAssort="ngModel" required>
       <mat-option [value]="{ id: 1, descrizione: 'ALIMENTARI' }">ALIMENTARI</mat-option>
       <mat-option [value]="{ id: 2, descrizione: 'DROGHERIA' }">DROGHERIA</mat-option>
       <mat-option [value]="{ id: 3, descrizione: 'BEVANDE' }">BEVANDE</mat-option>
       <mat-option [value]="{ id: 4, descrizione: 'SURGELATI' }">SURGELATI</mat-option>
       <mat-option [value]="{ id: 5, descrizione: 'CURA CASA' }">CURA CASA</mat-option>
     </mat-select>
+    @if (inputFamAssort.hasError('required') && (inputFamAssort.dirty || inputFamAssort.touched)) {
+      <mat-error>{{getErrorMessage(inputFamAssort)}}</mat-error>
+    }
   </mat-form-field>
 
 </div>
@@ -105,6 +122,8 @@
 
     <div mat-dialog-actions align="end" class="mat-dialog-actions">
       <button class="btn-save styled-btn-save" mat-button type="button" 
-        (click)="confirmAdd()">Save</button>
+        (click)="confirmAdd()" 
+        [disabled]="addForm.invalid">Save</button>
       <button class="btn-cancel styled-btn-cancel" mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>
+</form>
