@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators, FormsModule, AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { IArticoliDto } from 'src/app/models/ArticoliDto';
@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-add.dialog',
@@ -16,8 +17,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
   imports: [FormsModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatSelectModule, MatDatepickerModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './add.dialog.component.html',
-  styleUrl: './add.dialog.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './add.dialog.component.css'
 
 })
 export class AddDialogComponent implements ErrorStateMatcher, OnInit{
@@ -34,8 +34,11 @@ export class AddDialogComponent implements ErrorStateMatcher, OnInit{
     }
   }
 
+  private cdr = inject(ChangeDetectorRef);
   private articoliService = inject(ArticoliService);
-  public data = inject<IArticoliDto>(MAT_DIALOG_DATA);
+  private dialogData = inject(MAT_DIALOG_DATA);
+  public data: IArticoliDto = this.dialogData.newRecord;
+  public articoliEsistenti: IArticoliDto[] = this.dialogData.articoliEsistenti;
   public dialogRef = inject(MatDialogRef<AddDialogComponent>);
 
   getErrorMessage(control: any): string {
@@ -45,6 +48,38 @@ export class AddDialogComponent implements ErrorStateMatcher, OnInit{
     if (control.hasError('duplicate')) return 'Valore già presente';
   
   return '';
+}
+
+  checkDuplicate(control: any) {
+
+    const codiceInserito = control.value;
+    const formControl = control.control; 
+
+    console.log('Valore inserito: ', codiceInserito);
+    console.log('Tipo di valore inserito: ', typeof codiceInserito);
+
+
+    setTimeout(() => {
+
+      const existValue = this.articoliEsistenti.some((a: any) => {
+      
+        return String(a.codArt).trim() === String(codiceInserito).trim();
+      });
+
+      console.log('Dato servizio: ', existValue);
+
+      if (existValue) {
+        formControl.setErrors({ ...formControl.errors, duplicate: true });
+      } else {
+      if (formControl.hasError('duplicate')) {
+        const errors = { ...formControl.errors };
+        delete errors['duplicate']; 
+        formControl.setErrors(Object.keys(errors).length > 0 ? errors : null);
+        console.log('Tipo di valore inserito: ', formControl);
+      }
+    }
+    this.cdr.detectChanges();
+  }, 100);
 }
 
   submit() {

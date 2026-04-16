@@ -19,8 +19,7 @@ import { DecimalPipe } from '@angular/common';
   standalone: true,
   imports: [MatTableModule, MatPaginator, MatInputModule, MatButtonModule, MatIcon, DecimalPipe],
   templateUrl: './articoli.component.html',
-  styleUrl: './articoli.component.css',
-  providers: [ArticoliService]
+  styleUrl: './articoli.component.css'
 })
 export class ArticoliComponent implements OnInit, AfterViewInit{
  
@@ -41,6 +40,8 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
     this.articoliService.getAllArticoli().subscribe({
       next: (response: IArticoliDto[]) => {
         this.dataSource.data = response;
+        this.articoliService.updateData(response);
+
         console.log('Dati ricevuti dal backend: ', response);
       }
     })
@@ -62,13 +63,14 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
 
   addNew() {
     const newRecord = new IArticoliDto();
+    const articoliEsistenti = this.articoliService.datachange.getValue();
   
     const dialogRef = this.dialog.open(AddDialogComponent, {
 
       disableClose: true,
       height: '700px',
       width: '600px',
-      data: newRecord
+      data: {newRecord, articoliEsistenti}
   });
 
     dialogRef.afterClosed().subscribe(result => {

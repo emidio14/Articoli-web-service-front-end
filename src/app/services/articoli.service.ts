@@ -25,6 +25,11 @@ export class ArticoliService {
     return this.dialogData;
   }
 
+  updateData(articoli: IArticoliDto[]){
+    this.datachange.next(articoli);
+    console.log('Dati inseriti nel BehaviorSubject del servizio:', articoli.length);
+  }
+
   //CRUD API REST
 
   getAllArticoli(): Observable<IArticoliDto[]> {

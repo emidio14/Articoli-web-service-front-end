@@ -4,8 +4,8 @@
   <div class="form-container">
   <mat-form-field appearance="fill">
     <mat-label>Codice Articolo</mat-label>
-    <input matInput placeholder="Inserisci un codice articolo ..." name="codArt" [(ngModel)]="data.codArt" #codArt="ngModel" required>
-     @if (codArt.hasError('required') && (codArt.dirty || codArt.touched)) {
+    <input matInput placeholder="Inserisci un codice articolo ..." name="codArt" [(ngModel)]="data.codArt" #codArt="ngModel" required (ngModelChange)="checkDuplicate(codArt)">
+     @if ((codArt.hasError('required') ||  codArt.hasError('duplicate'))  && (codArt.dirty || codArt.touched)) {
       <mat-error>{{getErrorMessage(codArt)}}</mat-error>
     }
   </mat-form-field>
