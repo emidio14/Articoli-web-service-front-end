@@ -1,1 +1,10 @@
-<p>delete.dialog works!</p>
+<h2 mat-dialog-title>Delete file</h2>
+<mat-dialog-content>
+  Sei sicuro di voler procedere con l'eliminazione ?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton (click)="closeDialog()">No</button>
+  <button matButton (click)="confirmDelete()" mat-dialog-close cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+
+

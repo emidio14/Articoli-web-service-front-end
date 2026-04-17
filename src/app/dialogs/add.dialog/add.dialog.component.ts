@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormControl, Validators, FormsModule, AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormsModule, AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { IArticoliDto } from 'src/app/models/ArticoliDto';
 import { ArticoliService } from 'src/app/services/articoli.service';
@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-add.dialog',
@@ -42,8 +42,7 @@ export class AddDialogComponent implements ErrorStateMatcher, OnInit{
   public dialogRef = inject(MatDialogRef<AddDialogComponent>);
 
   getErrorMessage(control: any): string {
-    if (!control) return '';
-
+    
     if (control.hasError('required')) return 'Campo Obbligatorio';
     if (control.hasError('duplicate')) return 'Valore già presente';
   

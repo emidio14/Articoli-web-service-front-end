@@ -27,6 +27,8 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
   dataSource = new MatTableDataSource<IArticoliDto>([]);
   dialog= inject(MatDialog);
   articoliService = inject(ArticoliService);
+  index: string = "0";
+  id: string = "";
 
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
@@ -87,9 +89,34 @@ export class ArticoliComponent implements OnInit, AfterViewInit{
   
 
   /*edit(){}
-
-  delete(){}
   */
+
+  delete(i: string, codArt: string, descrizione: string, um: string, 
+         codStat: string, pzCart: number, pesoNetto: number, idStatoArt: number, 
+         dataCreaz: Date, barcode: string){
+
+          this.index = i;
+          this.id = codArt;
+
+          const dialogRef = this.dialog.open(DeleteDialogComponent, {
+
+            disableClose: true,
+            height: '200px',
+            width: '500px',
+            data: {index: i, id: codArt, descrizione: descrizione, um: um, 
+                        codStat: codStat, pzCart: pzCart, pesoNetto: pesoNetto, 
+                        idStatoArt: idStatoArt, dataCreaz: dataCreaz, barcode: barcode}
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            if(result === 1){
+              const foundIndex = this.articoliService.datachange.value.findIndex(x => x.codArt === this.id);
+              this.articoliService.datachange.value.splice(foundIndex, 1);
+              this.refreshtable();
+            }
+          })
+         }
+  
 
   private refreshtable(){
     this.paginator._changePageSize(this.paginator.pageSize);
