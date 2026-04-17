@@ -19,18 +19,27 @@ export class DeleteDialogComponent {
   private dialogData = inject(MAT_DIALOG_DATA); 
   public articoliEsistenti: IArticoliDto[] = this.dialogData.articoliEsistenti;
   public dialogRef = inject(MatDialogRef<DeleteDialogComponent>);
-  public data: any;
 
 
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-  confirmDelete(): void {
+  public confirmDelete() {
 
-    console.log("eliminazione dato")
-    this.articoliService.deleteArticoli(this.data.id);
-    
+    console.log("ID passato: ", this.dialogData.id, typeof this.dialogData.id);
+    this.articoliService.deleteArticoli(this.dialogData.id).subscribe({        
+      
+      next: (response: IArticoliDto) => {
+        console.log('Eliminato record: ', response);
+        this.dialogRef.close(response);
+        
+      },
+      error: (err) => {
+        console.error('Errore durante l\'eliminazione del record: ', err);
+      }
+
+    })
   }
 
   

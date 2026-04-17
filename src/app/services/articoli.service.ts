@@ -46,7 +46,7 @@ export class ArticoliService {
   }
 
   deleteArticoli(codArt: String): Observable<IArticoliDto> {
-    return this.http.delete<IArticoliDto>(`${this.baseUrl}/${codArt}`)
+    return this.http.delete<IArticoliDto>(`${this.baseUrl}${codArt}`)
       }
 
 }
